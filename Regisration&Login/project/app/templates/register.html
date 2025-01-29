@@ -1,0 +1,217 @@
+<h1>this is registration page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
+</head>
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+input[type="file"] {
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color:gray;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color:black;
+}
+
+
+#volume {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#volumeValue {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+nput[type="checkbox"], input[type="radio"] {
+    margin-right: 10px;
+}
+
+.checkbox-group, .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.checkbox-group label, .radio-group label {
+    margin-right: 20px;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+
+.error {
+  color: #f00;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 10px auto;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="password"],
+  textarea {
+    padding: 5px;
+  }
+}
+</style>
+<body>
+{{msg}}
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+    <label for="username">Name:</label>
+    <input type="text" name="username" placeholder="Enter your name">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" placeholder="Enter your email">
+    <br>
+    <label for="detail">Description:</label>
+    <textarea name="detail" cols="20" rows="5"></textarea>
+    <br>
+    <label for="phone">Contact:</label>
+    <input type="tel" name="phone" placeholder="Enter your phone number">
+    <br>
+    <br>
+    <label for="dob">DOB:</label>
+    <input type="date" name="dob">
+    <label for="volume">Volume:</label>
+     <input
+        type="range"
+        id="volume"
+        name="volume"
+        min="0"
+        max="100"
+        value="{{ volume|default:50 }}"
+        oninput="showValue(this.value)"
+    >
+    <br>
+    <br>
+    <label for="subscribe">Education:</label>
+    <input type="checkbox" name="subscribe" value="one" >B.Tech
+    <input type="checkbox" name="subscribe" value="two" >M.Tech
+    <input type="checkbox" name="subscribe" value="three">P.hd
+    
+    <br>
+    <label for="gender">Gender:</label>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female
+    <br>
+    <label for="profile-pic">Image:</label>
+    <input type="file" name="profile-pic" accept=".jpeg, .png" >
+    <br>
+
+    <label for="resume">Resume:</label>
+    <input type="file" name="resume" accept=".pdf, .doc" >
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <br>
+    <label for="password">Con_Password:</label>
+    <input type="password" name="cpassword">
+    <br>
+    <input type="submit" value="Submit">
+
+</form>
+</div>
+</body>
+</html>
