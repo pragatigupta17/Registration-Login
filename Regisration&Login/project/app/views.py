@@ -16,8 +16,8 @@ def register(request):
         gender=request.POST.get('gender')
         password=request.POST.get('password')
         cpassword=request.POST.get('cpassword')
-        profile_pic=request.POST.get('profile-pic')
-        resume=request.POST.get('resume')
+        profile_pic=request.FILES.get('profile-pic')
+        resume=request.FILES.get('resume')
         print(name,email,detail,phone,dob,subscribe,gender,password,cpassword,profile_pic,resume)
         user = Student.objects.filter(email=email)
         if user:
